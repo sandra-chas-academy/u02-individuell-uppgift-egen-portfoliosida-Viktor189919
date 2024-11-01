@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: white;
+    --bg-color-projects: white;
+    --headline-color: black;
+    --paragraph-color: gray;
+    --shadow-color: gray;
+    --svg-color: gray;
+    --my-gradient: linear-gradient(rgb(7, 193, 7), gold);
+    --my-gradient-text: linear-gradient(90deg, gold, rgb(7, 193, 7));
+    --occupation-form-bg-color: #dffee2;
+    --occupation-form-text-color: green;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: var(--bg-color);
+}
+
+.colormode-toggle {
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: white;
+    border-radius: 50%;
+    border: solid 2px black;
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.colormode-toggle::before {
+    content: "";
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px gray;
+}
+
+.colormode-toggle:checked {
+    background-color: black;
+    border: solid 2px gray;
+}
+
+.colormode-toggle:checked::before {
+    background-color: gray;
+}
+
+:root:has(.colormode-toggle:checked) {
+    --bg-color: black;
+    --bg-color-projects: #363636;
+    --headline-color: #d0d0d0;
+    --shadow-color: black;
+    --svg-color: invert(60%) grayscale(50%) sepia(0%);
+    --occupation-form-bg-color: #032a07;
+}
+
+.svg-image {
+    filter: var(--svg-color);
+}
+
+/* Reusable css for all-container */
+
+.all-container {
+    height: auto;
+    min-height: 100vh;
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    color: var(--headline-color);
+    font-weight: 800;
+}
+
+p {
+    color: var(--paragraph-color);
+}
+
+/* Reusable css for navigation */
+
+nav {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 0.5rem
+}
+
+nav .burger-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: auto;
+}
+
+nav .my-logo {
+    font-size: 2rem;
+    background-image: var(--my-gradient-text);
+    color: transparent;
+    background-clip: text;
+    justify-content: start;
+}
+
+.nav-list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;    
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: var(--headline-color);
+    font-weight: 600;
+}
+
+.social-media-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+
+.social-media-img {
+    width: 1.5rem;
+}
+
+.author {
+    height: 5vh;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: 1vh;
+}
+
+@media (min-width: 600px) {
+
+    .colormode-toggle {
+        left: 3rem;
+        top: 2rem;
+    }
+
+
+    .all-container {
+        padding: 2rem 8rem 1rem 8rem;
+    }
+
+    nav {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav .my-logo {
+        font-size: 1.8rem;
+        flex: 2;
+    }
+
+    nav .burger-img {
+        display: none;
+    }
+
+
+    .nav-list {
+        display: grid;
+        grid-template-columns: repeat(3, 33.3%);        
+        column-gap: 0;
+        flex: 3;
+    }
+
+    .nav-list li {
+        justify-content: flex-start;
+    }
+
+    .nav-list li a {
+        color: var(--paragraph-color);
+        font-size: 0.8rem;
+    }
+
+    .social-media-container {
+        display: flex;
+        flex-direction: column;
+        flex: 0.7;
+        gap:0.2rem;
+        margin-top: 0;
+  
+    }
+
+    .social-media-img {
+        width: 1.2rem;
+    }
+}
+
+@media (min-width: 850px) {
+
+    .nav-list {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .social-media-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+    }   
+}
