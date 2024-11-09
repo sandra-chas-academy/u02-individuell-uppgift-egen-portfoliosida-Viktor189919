@@ -1,0 +1,47 @@
+{
+    "companies": [{
+
+        "name": "Photowall",
+        "location": "Skarpnäck, Stockholm",
+        "employmentForm": "Full Time",
+        "duties": "Printing operator",
+        "timePeriod": "2011 - 2024"
+    },
+    {
+        "name": "OCT",
+        "location": "Spånga, Stockholm",
+        "employmentForm": "Hourly worker",
+        "duties": "Mover",
+        "timePeriod": "2010 - 2011"
+    },
+    {
+        "name": "Uniflex",
+        "location": "Stockholm",
+        "employmentForm": "Hourly worker",
+        "duties": "Mover",
+        "timePeriod": "2008 - 2009"
+    }],
+
+    "schools": [{
+
+        "name": "Bromma gymnasium",
+        "location": "Bromma, Stockholm",
+        "studyPace": "Full Time student",
+        "educationLevel": "High School",
+        "timePeriod": "2004 - 2007"
+    },
+    {
+        "name": "Vinstagårdsskolan",
+        "location": "Vinsta, Stockholm",
+        "studyPace": "Full Time student",
+        "educationLevel": "Middle school",
+        "timePeriod": "2001 - 2004"
+    },
+    {
+        "name": "Björnbodaskolan",
+        "location": "Vinsta, Stockholm",
+        "studyPace": "Full Time student",
+        "educationLevel": "Elementary school",
+        "timePeriod": "1995 - 2001"
+    }]
+}
