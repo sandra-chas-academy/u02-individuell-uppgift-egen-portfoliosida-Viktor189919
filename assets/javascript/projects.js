@@ -1,11 +1,24 @@
+// Github api url: "https://api.github.com/repos/Viktor189919/rock-paper-scissor".
+
 const projectOneTitleElement = document.getElementById("project-one-title");
-const projectOneDescriptionElement = document.getElementById("project-one-description")
+const projectOneDescriptionElement = document.getElementById("project-one-description");
+const projectOneGithubLinkElement = document.getElementById("project-one-github-link");
+
+const projectTwoTitleElement = document.getElementById("project-two-title");
+const projectTwoDescriptionElement = document.getElementById("project-two-description");
+const projectTwoGithubLinkElement = document.getElementById("project-two-github-link");
+
+const fetchingMsgElement = document.getElementById("fetching-msg-id");
+
+const projectContainerElements = document.querySelectorAll(".project-container")
 
 async function getGithubData() {
 
+    displayWaitingMsg();
+
     try {
         
-        const response = await fetch("https://api.github.com/repos/Viktor189919/rock-paper-scissor");
+        response = await fetch("https://api.github.com/users/Viktor189919/repos");
 
         const githubData = await response.json();
 
@@ -21,10 +34,26 @@ async function getGithubData() {
 async function updateProjects() {
 
     data = await getGithubData();
-    console.log(data.name);
-    projectOneTitleElement.innerText = data.name;
-    projectOneDescriptionElement.innerText = data.description;
+
+    data.forEach(repo => {
+
+        if (repo.name === "rock-paper-scissor") {
+            projectOneTitleElement.innerText = repo.name;
+            projectOneDescriptionElement.innerText = repo.description;
+            projectOneGithubLinkElement.href = repo.html_url;
+
+        } else if (repo.name === "Minesweeper") {
+            projectTwoTitleElement.innerText = repo.name;
+            projectTwoDescriptionElement.innerText = repo.description;
+            projectTwoGithubLinkElement.href = repo.html_url;
+        }
+    });
+    displayWaitingMsg()
 }
 
+function displayWaitingMsg() {
+    fetchingMsgElement.classList.toggle("collapsed")
+}   
 
 updateProjects();
+

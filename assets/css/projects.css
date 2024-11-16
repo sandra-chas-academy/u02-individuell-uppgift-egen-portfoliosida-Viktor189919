@@ -5,7 +5,24 @@
     display: none;
 }
 
+.collapsed {
+    display: none;
+}
+
+.fetching-msg {
+    width:fit-content;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1;
+}
+
 main {
+    position: relative;
     max-width: 1000px;
     display: flex;
     flex-direction: column;
