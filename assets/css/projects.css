@@ -5,10 +5,6 @@
     display: none;
 }
 
-.collapsed {
-    display: none;
-}
-
 .fetching-msg {
     width:fit-content;
     height: auto;
@@ -26,13 +22,64 @@ main {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    margin-top: 3rem;
+    gap: 2rem;
     margin-bottom: 5vh;
 }
 
 main h1 {
     font-size: 1.3rem;
+}
+
+.carousel-container {
+    position: relative;
+}
+
+.scroll-arrow {
+    width: 2.2rem;
+    font-size: 2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+}
+
+.scroll-arrow:hover {
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+}
+
+.prev {
+    left: 0.2rem;
+}
+
+.next {
+    right: 0.2rem;
+}
+
+.index-dot-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+}
+
+.index-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--dot-color);
+    cursor: pointer;
+}
+
+
+.active-dot {
+    background-color: var(--active-dot-color);
+}
+
+.index-dot:hover {
+    background-color: var(--dot-hover-color);
+    
 }
 
 .project-container {
@@ -105,6 +152,10 @@ main h1 {
     gap: 0.3rem;
 }
 
+.collapsed {
+    display: none;
+}
+
 @media (min-width: 600px) {
     
     .nav-list a, .social-media-container {
@@ -116,11 +167,14 @@ main h1 {
         grid-template-columns: repeat(3, 33.3%);
         width: 100%;
         align-self: center;
+        margin-top: 3rem;
     }
 
     main h1 {
         grid-column: 1 / 4;
     }
+
+    
 
     .project-container {
         width: 100%;

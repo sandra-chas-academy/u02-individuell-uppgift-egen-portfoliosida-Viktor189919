@@ -30,14 +30,30 @@
             </nav>
         </header>
 
-        <main>
-            <div id="fetching-msg-id" class="fetching-msg collapsed">Fetching data...</div>
+        <main id="main-element">
+            <div id="fetching-msg" class="fetching-msg collapsed">Fetching data...</div>
+            
             <h1>Projects</h1>
+            <div id="carousel-container" class="carousel-container">
+                <div class="scroll-arrow prev">&#8656</div>
+                <div class="scroll-arrow next">&#8658</div>
+                <div id="carousel-display" class="carousel-display">
+                    
+                </div>
+                <div id="index-dot-container" class="index-dot-container">
+                    <div id="0" class="index-dot active-dot"></div>
+                    <div id="1" class="index-dot"></div>
+                    <div id="2" class="index-dot"></div>
+                    <div id="3" class="index-dot"></div>
+                    <div id="4" class="index-dot"></div>
+                    <div id="5" class="index-dot"></div>
+                </div>
+            </div>
             <article class="project-container project-1">
-                <img src="assets/images/project-img-boy-on-cliff.jpg" alt="Anime boy on cliff">
+                <img src="assets/images/project-img-rock-paper-scissor.jpg" alt="Anime boy on cliff">
                 <div class="info-container">
                     <h2 id="project-one-title"></h2>
-                    <p id="project-one-description"></p> 
+                    <p id="project-one-description" class="project-description"></p> 
                     <p class="paragraph-techstack">
                         Techstack : <span>HTML, CSS, Javascript</span>
                     </p>
@@ -50,11 +66,11 @@
                 </div>
             </article>
             
-            <article class="project-container project-2">
-                <img src="assets/images/project-img-beautiful-mountains.jpg" alt="Beautiful mountains">
+            <article class="project-container project-2 collapsed">
+                <img src="assets/images/project-img-minesweeper.jpg" alt="Beautiful mountains">
                 <div class="info-container">
                     <h2 id="project-two-title"></h2>
-                    <p id="project-two-description"></p>
+                    <p id="project-two-description" class="project-description"></p>
                     <p class="paragraph-techstack">
                         Techstack : <span>HTML, CSS, Javascript</span>
                     </p>
@@ -67,11 +83,11 @@
                 </div>
             </article>
             
-            <article class="project-container project-3">
+            <article class="project-container project-3 collapsed">
                 <img src="assets/images/project-img-abstract-monstera.jpg" alt="Painting with monstera leaves">
                 <div class="info-container">
                     <h2>Project title 3</h2>
-                    <p>
+                    <p class="project-description">
                         This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content
                     </p>
                     <p class="paragraph-techstack">
@@ -86,11 +102,11 @@
                 </div>
             </article>
 
-            <article class="project-container project-4">
+            <article class="project-container project-4 collapsed">
                 <img src="assets/images/project-img-countryside.jpg" alt="Road on contryside">
                 <div class="info-container">
                     <h2>Project title 4</h2>
-                    <p>
+                    <p class="project-description">
                         This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content
                     </p>
                     <p class="paragraph-techstack">
@@ -105,11 +121,11 @@
                 </div>
             </article>
 
-            <article class="project-container project-5">
+            <article class="project-container project-5 collapsed">
                 <img src="assets/images/project-img-abstract-colors.jpg" alt="Abstract colors">
                 <div class="info-container">
                     <h2>Project title 5</h2>
-                    <p>
+                    <p class="project-description">
                         This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content
                     </p>
                     <p class="paragraph-techstack">
@@ -124,11 +140,11 @@
                 </div>
             </article>
 
-            <article class="project-container project-6">
+            <article class="project-container project-6 collapsed">
                 <img src="assets/images/project-img-lines.jpg" alt="Black lines">
                 <div class="info-container">
                     <h2>Project title 6</h2>
-                    <p>
+                    <p class="project-description">
                         This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content
                     </p>
                     <p class="paragraph-techstack">
@@ -142,7 +158,6 @@
                     </div>
                 </div>
             </article>
-
         </main>
 
         <footer class="author">
