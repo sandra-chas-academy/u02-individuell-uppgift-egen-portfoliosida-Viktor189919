@@ -101,7 +101,7 @@ main h1 {
 
 .project-2 img {
     align-self: center;
-    width: 119%;
+    width: 122%;
     height: auto;
 }
 
@@ -118,6 +118,10 @@ main h1 {
 
 .info-container p {
     font-size: 0.7rem;
+}
+
+.info-container .project-description {
+    min-height: 3.1rem;
 }
 
 .info-container .paragraph-techstack {

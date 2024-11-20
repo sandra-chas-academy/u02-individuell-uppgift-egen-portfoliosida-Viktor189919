@@ -11,10 +11,10 @@ const projectTwoGithubLinkElement = document.getElementById("project-two-github-
 const fetchingMsgElement = document.getElementById("fetching-msg");
 
 const projectContainerElements = document.querySelectorAll(".project-container")
+const carouselContainer = document.getElementById("carousel-container")
 const carouselDisplay = document.getElementById("carousel-display");
 const indexDotContainer = document.getElementById("index-dot-container")
 const mainElement = document.getElementById("main-element")
-const carouselContainer = document.getElementById("carousel-container")
 const indexDotElements = document.querySelectorAll(".index-dot")
 
 
@@ -66,7 +66,7 @@ updateProjects();
 let activeIndex = 0;
 
 const mediaWidth = window.matchMedia("(min-width: 600px")
-console.log(mediaWidth)
+
 mediaWidth.addEventListener("change", () => {
     mediaQueryCheck(mediaWidth);
 })
