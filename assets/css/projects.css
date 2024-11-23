@@ -1,10 +1,5 @@
 @import url(./base.css);
 
-
-.nav-list a, .social-media-container {
-    display: none;
-}
-
 .fetching-msg {
     width:fit-content;
     height: auto;
@@ -22,6 +17,7 @@ main {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
+    margin-top: 4rem;
     gap: 2rem;
     margin-bottom: 5vh;
 }

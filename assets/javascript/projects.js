@@ -35,7 +35,7 @@ async function getGithubData() {
         console.log(`Error: ${error}`);
     }
 
-}
+ }
 
 async function updateProjects() {
 
@@ -65,7 +65,7 @@ updateProjects();
 
 let activeIndex = 0;
 
-const mediaWidth = window.matchMedia("(min-width: 600px")
+const mediaWidth = window.matchMedia("(min-width: 600px)")
 
 mediaWidth.addEventListener("change", () => {
     mediaQueryCheck(mediaWidth);

@@ -1,12 +1,8 @@
 @import url(./base.css);
 
-.nav-list li a, .social-media-container {
-    display: none;
-}
-
 main {
     width: 100%;
-    height: 80vh;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,6 +32,10 @@ main h1 {
 .contact span {
     font-size: 1rem;
     color: var(--paragraph-color)
+}
+
+.main-burgermenu-open {
+    height: 20rem;
 }
 
 @media (min-width: 600px) {

@@ -121,6 +121,10 @@ nav .burger-img {
     height: auto;
 }
 
+.burger-img:hover {
+    cursor: pointer;
+}
+
 nav .my-logo {
     font-size: 2rem;
     background-image: var(--my-gradient-text);
@@ -157,6 +161,10 @@ nav .my-logo {
     align-self: center;
     margin-top: auto;
     margin-bottom: 1vh;
+}
+
+.collapsed {
+    display: none;
 }
 
 @media (min-width: 600px) {

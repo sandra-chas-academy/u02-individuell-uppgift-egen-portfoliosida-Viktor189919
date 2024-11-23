@@ -1,15 +1,18 @@
+// Get lists of all HTML elements for companies
 const companyDutiesElements = document.querySelectorAll(".company-duty");
 const companyNameElements = document.querySelectorAll(".company-name");
 const companylocationElements = document.querySelectorAll(".company-location");
 const companyEmploymentFormElements = document.querySelectorAll(".employment-form")
 const companyWorkTimePeriodElements = document.querySelectorAll(".work-time-period")
 
+// Get lists of all HTML elements for school
 const schoolEdLevelElements = document.querySelectorAll(".ed-level");
 const schoolNameElements = document.querySelectorAll(".school-name");
 const schoolLocationElements = document.querySelectorAll(".school-location")
 const schoolStudyPaceElements = document.querySelectorAll(".study-pace")
 const schoolStudyTimePeriodELements = document.querySelectorAll(".study-time-period")
 
+// Fetching data from json-file
 async function getJsonData() {
 
     try {
@@ -28,6 +31,7 @@ async function getJsonData() {
     }
 }
 
+// Use json-data to update occupations
 function updateAboutSection(jsonData) {
 
     for (let company of jsonData.companies) {

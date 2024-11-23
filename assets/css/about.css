@@ -1,10 +1,5 @@
 @import url(./base.css);
 
-.nav-list a, .social-media-container {
-    display: none;
-}
-
-
 .all-container {
     gap: 4rem;
 }
