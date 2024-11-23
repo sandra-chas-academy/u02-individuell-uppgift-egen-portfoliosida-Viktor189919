@@ -3,6 +3,6 @@ const navList = document.getElementById("nav-list-id");
 const socialMediaContainer = document.getElementById("social-media-container-id")
 
 burgerMenu.addEventListener("click", (e) => {
-    navList.classList.toggle("collapsed");
-    socialMediaContainer.classList.toggle("collapsed");
+    navList.classList.toggle("menu-collapsed");
+    socialMediaContainer.classList.toggle("menu-collapsed");
 })

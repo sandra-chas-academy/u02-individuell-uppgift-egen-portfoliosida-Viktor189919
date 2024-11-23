@@ -113,7 +113,7 @@ indexDotElements.forEach(dot => {
 
     const dotId = parseInt(dot.id)
     dot.addEventListener("click", () => {
-        changeProject(dotId);
+        dotpickProject(dotId);
     })
 })
 
@@ -157,7 +157,7 @@ function switchProject(newIndex) {
         }
 }
 
-function changeProject(dotId) {
+function dotpickProject(dotId) {
 
     if (!(activeIndex === dotId)) {
         projectContainerElements[activeIndex].classList.toggle("collapsed");
