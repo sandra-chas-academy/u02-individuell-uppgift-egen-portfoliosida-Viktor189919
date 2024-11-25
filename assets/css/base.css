@@ -174,8 +174,8 @@ nav .my-logo {
         top: 2rem;
     }
 
-
     .all-container {
+        width: 100%;
         padding: 2rem 8rem 1rem 8rem;
     }
 

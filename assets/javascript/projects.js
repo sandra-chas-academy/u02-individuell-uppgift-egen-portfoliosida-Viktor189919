@@ -1,30 +1,49 @@
-// Github api url: "https://api.github.com/repos/Viktor189919/rock-paper-scissor".
-
 const projectOneTitleElement = document.getElementById("project-one-title");
 const projectOneDescriptionElement = document.getElementById("project-one-description");
 const projectOneGithubLinkElement = document.getElementById("project-one-github-link");
+const projectOneTechstackSpan = document.getElementById("project-one-techstack-span");
 
 const projectTwoTitleElement = document.getElementById("project-two-title");
 const projectTwoDescriptionElement = document.getElementById("project-two-description");
 const projectTwoGithubLinkElement = document.getElementById("project-two-github-link");
+const projectTwoTechstackSpan = document.getElementById("project-two-techstack-span");
 
-const fetchingMsgElement = document.getElementById("fetching-msg");
+const fetchingMsgContainer = document.getElementById("fetching-msg-id");
 
-const projectContainerElements = document.querySelectorAll(".project-container")
-const carouselContainer = document.getElementById("carousel-container")
+const projectContainerElements = document.querySelectorAll(".project-container");
+const carouselContainer = document.getElementById("carousel-container");
 const carouselDisplay = document.getElementById("carousel-display");
-const indexDotContainer = document.getElementById("index-dot-container")
-const mainElement = document.getElementById("main-element")
-const indexDotElements = document.querySelectorAll(".index-dot")
+const indexDotContainer = document.getElementById("index-dot-container");
+const mainElement = document.getElementById("main-element");
+const indexDotElements = document.querySelectorAll(".index-dot");
 
+let intervalId;
 
-async function getGithubData() {
+function displayWaitingMsg(status) {
 
-    displayWaitingMsg();
+    if (status) {
+        fetchingMsgContainer.classList.remove("collapsed")
+        const fetchingMsgElement = document.getElementById("fetching-msg");
+        intervalId = setInterval(() => {
+            if (fetchingMsgElement.innerText === "Collecting data...") {
+                fetchingMsgElement.innerText = "Collecting data";
+            } else {
+                fetchingMsgElement.innerText += ".";
+            }
+        }, 1000)
+
+    } else {
+        clearInterval(intervalId);        
+        fetchingMsgContainer.classList.add("collapsed")
+    }
+    
+}   
+
+async function getGithubData(url) {
 
     try {
         
-        response = await fetch("https://api.github.com/users/Viktor189919/repos");
+        const response = await fetch(url);
 
         const githubData = await response.json();
 
@@ -39,27 +58,42 @@ async function getGithubData() {
 
 async function updateProjects() {
 
-    data = await getGithubData();
+    displayWaitingMsg(true);
 
-    data.forEach(repo => {
-
+    const githubRepos =  "https://api.github.com/users/Viktor189919/repos";
+    const repos = await getGithubData(githubRepos);
+    
+    for (let repo of repos) {
+        
         if (repo.name === "rock-paper-scissor") {
+
+            const languages = await getGithubData(repo.languages_url);
+            const langArr = Object.keys(languages);
+            langArr.reverse();
+            const techstack = langArr.join(", ");
+            
+            projectOneTechstackSpan.innerText += `${techstack}`
             projectOneTitleElement.innerText = repo.name;
             projectOneDescriptionElement.innerText = repo.description;
             projectOneGithubLinkElement.href = repo.html_url;
 
         } else if (repo.name === "Minesweeper") {
+            const languages = await getGithubData(repo.languages_url);
+            const langArr = Object.keys(languages);
+            langArr.reverse();
+            const techstack = langArr.join(", ");
+            
+            projectTwoTechstackSpan.innerText = `${techstack}`
             projectTwoTitleElement.innerText = repo.name;
             projectTwoDescriptionElement.innerText = repo.description;
             projectTwoGithubLinkElement.href = repo.html_url;
         }
-    });
-    displayWaitingMsg()
-}
+    }
 
-function displayWaitingMsg() {
-    fetchingMsgElement.classList.toggle("collapsed")
-}   
+    setTimeout(() => {
+        displayWaitingMsg(false)
+    }, 1000);
+}
 
 updateProjects();
 
