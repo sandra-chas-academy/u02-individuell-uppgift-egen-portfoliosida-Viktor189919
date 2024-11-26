@@ -30,7 +30,7 @@ function displayWaitingMsg(status) {
             } else {
                 fetchingMsgElement.innerText += ".";
             }
-        }, 1000)
+        }, 500)
 
     } else {
         clearInterval(intervalId);        
@@ -45,54 +45,84 @@ async function getGithubData(url) {
         
         const response = await fetch(url);
 
-        const githubData = await response.json();
+        if (response.ok) {
+        
+            const githubData = await response.json();
 
-        return githubData;
-    
+            return githubData;
+
+        } else {
+
+            return "error";
+        }
+
     } catch (error) {
 
-        console.log(`Error: ${error}`);
-    }
+            console.log(`Error: ${error}`);
 
- }
+            return "error";
+    }
+}
+
+async function getRepositoryData(repoName) {
+    
+    const repos = await getGithubData("https://api.github.com/users/Viktor189919/repos")
+
+    if (repos !== "error") {
+
+        for (let repo of repos) {
+
+            if (repo.name === repoName) {
+                
+                const languages = await getGithubData(repo.languages_url);
+                const langArr = Object.keys(languages);
+                langArr.reverse();
+                const techstack = langArr.join(", ");
+                
+                return {
+                    "name": repo.name,
+                    "description": repo.description,
+                    "techstack": techstack,
+                    "html_url": repo.html_url,
+                };
+            }
+        }
+    }
+    return "error";
+}
 
 async function updateProjects() {
 
     displayWaitingMsg(true);
 
-    const githubRepos =  "https://api.github.com/users/Viktor189919/repos";
-    const repos = await getGithubData(githubRepos);
-    
-    for (let repo of repos) {
+    const minesweeperData = await getRepositoryData("Minesweeper");
+    const rockPaperScissorData = await getRepositoryData("rock-paper-scissor");
+
+    if (minesweeperData !== "error") {
         
-        if (repo.name === "rock-paper-scissor") {
+        projectOneTitleElement.innerText = minesweeperData.name;
+        projectOneDescriptionElement.innerText = minesweeperData.description;
+        projectOneGithubLinkElement.href = minesweeperData.html_url;
+        projectOneTechstackSpan.innerText += minesweeperData.techstack;
+    
+    } else {
+        projectOneTitleElement.innerText = "Failed to collect data";
+    }
 
-            const languages = await getGithubData(repo.languages_url);
-            const langArr = Object.keys(languages);
-            langArr.reverse();
-            const techstack = langArr.join(", ");
-            
-            projectOneTechstackSpan.innerText += `${techstack}`
-            projectOneTitleElement.innerText = repo.name;
-            projectOneDescriptionElement.innerText = repo.description;
-            projectOneGithubLinkElement.href = repo.html_url;
+    if (rockPaperScissorData !== "error") {
+        
+        projectTwoTitleElement.innerText = rockPaperScissorData.name;
+        projectTwoDescriptionElement.innerText = rockPaperScissorData.description;
+        projectTwoGithubLinkElement.href = rockPaperScissorData.html_url;
+        projectTwoTechstackSpan.innerText = rockPaperScissorData.techstack;
 
-        } else if (repo.name === "Minesweeper") {
-            const languages = await getGithubData(repo.languages_url);
-            const langArr = Object.keys(languages);
-            langArr.reverse();
-            const techstack = langArr.join(", ");
-            
-            projectTwoTechstackSpan.innerText = `${techstack}`
-            projectTwoTitleElement.innerText = repo.name;
-            projectTwoDescriptionElement.innerText = repo.description;
-            projectTwoGithubLinkElement.href = repo.html_url;
-        }
+    } else {
+        projectTwoTitleElement.innerText = "Failed to collect data";
     }
 
     setTimeout(() => {
         displayWaitingMsg(false)
-    }, 1000);
+    }, 2000);
 }
 
 updateProjects();
