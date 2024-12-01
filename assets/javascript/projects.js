@@ -1,3 +1,4 @@
+// Collect all elements that shall be modified
 const projectOneTitleElement = document.getElementById("project-one-title");
 const projectOneDescriptionElement = document.getElementById("project-one-description");
 const projectOneGithubLinkElement = document.getElementById("project-one-github-link");
@@ -10,26 +11,35 @@ const projectTwoTechstackSpan = document.getElementById("project-two-techstack-s
 
 const fetchingMsgContainer = document.getElementById("fetching-msg-id");
 
+const mainElement = document.getElementById("main-element");
 const projectContainerElements = document.querySelectorAll(".project-container");
+
 const carouselContainer = document.getElementById("carousel-container");
 const carouselDisplay = document.getElementById("carousel-display");
 const indexDotContainer = document.getElementById("index-dot-container");
-const mainElement = document.getElementById("main-element");
 const indexDotElements = document.querySelectorAll(".index-dot");
+const scrollArrows = document.querySelectorAll(".scroll-arrow");
 
+// Declaration of setInterval variable
 let intervalId;
 
+// Message for user while data is being collected from github
 function displayWaitingMsg(status) {
 
     if (status) {
         fetchingMsgContainer.classList.remove("collapsed")
         const fetchingMsgElement = document.getElementById("fetching-msg");
+        
+        // Interval for dots to be added to message
         intervalId = setInterval(() => {
+            
             if (fetchingMsgElement.innerText === "Collecting data...") {
                 fetchingMsgElement.innerText = "Collecting data";
+            
             } else {
                 fetchingMsgElement.innerText += ".";
             }
+        
         }, 500)
 
     } else {
@@ -39,31 +49,31 @@ function displayWaitingMsg(status) {
     
 }   
 
+// Fetch data from github API
 async function getGithubData(url) {
 
     try {
         
         const response = await fetch(url);
 
+        // Condition for handling additional problems with fetch (ex. faulty url)
         if (response.ok) {
-        
             const githubData = await response.json();
 
             return githubData;
 
         } else {
-
             return "error";
         }
 
     } catch (error) {
+        console.log(`Error: ${error}`);
 
-            console.log(`Error: ${error}`);
-
-            return "error";
+        return "error";
     }
 }
 
+// Get data from specific repo. getGithubData() is called through this function
 async function getRepositoryData(repoName) {
     
     const repos = await getGithubData("https://api.github.com/users/Viktor189919/repos")
@@ -91,6 +101,7 @@ async function getRepositoryData(repoName) {
     return "error";
 }
 
+// Update projects with githudata
 async function updateProjects() {
 
     displayWaitingMsg(true);
@@ -98,23 +109,23 @@ async function updateProjects() {
     const minesweeperData = await getRepositoryData("Minesweeper");
     const rockPaperScissorData = await getRepositoryData("rock-paper-scissor");
 
-    if (minesweeperData !== "error") {
+    if (rockPaperScissorData !== "error") {
         
-        projectOneTitleElement.innerText = minesweeperData.name;
-        projectOneDescriptionElement.innerText = minesweeperData.description;
-        projectOneGithubLinkElement.href = minesweeperData.html_url;
-        projectOneTechstackSpan.innerText += minesweeperData.techstack;
+        projectOneTitleElement.innerText = rockPaperScissorData.name;
+        projectOneDescriptionElement.innerText = rockPaperScissorData.description;
+        projectOneGithubLinkElement.href = rockPaperScissorData.html_url;
+        projectOneTechstackSpan.innerText += rockPaperScissorData.techstack;
     
     } else {
         projectOneTitleElement.innerText = "Failed to collect data";
     }
 
-    if (rockPaperScissorData !== "error") {
+    if (minesweeperData !== "error") {
         
-        projectTwoTitleElement.innerText = rockPaperScissorData.name;
-        projectTwoDescriptionElement.innerText = rockPaperScissorData.description;
-        projectTwoGithubLinkElement.href = rockPaperScissorData.html_url;
-        projectTwoTechstackSpan.innerText = rockPaperScissorData.techstack;
+        projectTwoTitleElement.innerText = minesweeperData.name;
+        projectTwoDescriptionElement.innerText = minesweeperData.description;
+        projectTwoGithubLinkElement.href = minesweeperData.html_url;
+        projectTwoTechstackSpan.innerText = minesweeperData.techstack;
 
     } else {
         projectTwoTitleElement.innerText = "Failed to collect data";
@@ -131,26 +142,31 @@ let activeIndex = 0;
 
 const mediaWidth = window.matchMedia("(min-width: 600px)")
 
+// Check media width
 mediaWidth.addEventListener("change", () => {
     mediaQueryCheck(mediaWidth);
 })
 
 function mediaQueryCheck(width) {
     
+    // Media wider than 600px, move all projects to main element, side to side display
     if (width.matches) {
+
+        carouselContainer.classList.add("collapsed");
+        indexDotContainer.classList.add("collapsed");
         
         projectContainerElements.forEach(project => {
-            mainElement.appendChild(project)
             project.classList.remove("collapsed");
-            carouselContainer.classList.add("collapsed");
-            indexDotContainer.classList.add("collapsed");
+            mainElement.appendChild(project)
         })
 
+    // Media narrower than 600px, move all projects to carouseldisplay
     } else {
 
         carouselContainer.classList.remove("collapsed");
         indexDotContainer.classList.remove("collapsed");
- 
+        
+        // Set first project on display
         projectContainerElements.forEach((project, index) => {
             carouselDisplay.appendChild(project);
             if (index === 0) {
@@ -160,6 +176,7 @@ function mediaQueryCheck(width) {
             }
         })
 
+        // Set first dot to active-dot
         indexDotElements.forEach((dot, index) => {
             if (index === 0) {
                 dot.classList.add("active-dot")
@@ -171,18 +188,18 @@ function mediaQueryCheck(width) {
     }
 }
 
+// Initial media width check
 mediaQueryCheck(mediaWidth);
 
+// Event listeners for pagination dots
 indexDotElements.forEach(dot => {
-
     const dotId = parseInt(dot.id)
     dot.addEventListener("click", () => {
         dotpickProject(dotId);
     })
 })
 
-const scrollArrows = document.querySelectorAll(".scroll-arrow");
-
+// Event listeners for carousel arrows
 scrollArrows.forEach(arrow => {
     
     if (arrow.classList.contains("next")) {
@@ -197,6 +214,7 @@ scrollArrows.forEach(arrow => {
     }
 })
 
+// Switch project with carousel arrows
 function switchProject(newIndex) {
 
     newIndex = activeIndex + newIndex;
@@ -221,6 +239,7 @@ function switchProject(newIndex) {
         }
 }
 
+// Switch project with pagination dots
 function dotpickProject(dotId) {
 
     if (!(activeIndex === dotId)) {
