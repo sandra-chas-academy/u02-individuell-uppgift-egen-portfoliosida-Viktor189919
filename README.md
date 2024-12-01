@@ -1,4 +1,5 @@
-
+Netlify
+https://viktormyportfoliojs.netlify.app/projects
 
 För säkerhets skull så vill jag upplysa om ett felmeddelande jag alltid får i konsolen oavsett JS: 
 contact.html:1 Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist.
