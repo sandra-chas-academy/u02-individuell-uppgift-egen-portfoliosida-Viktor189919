@@ -36,13 +36,14 @@ function updateAboutSection(jsonData) {
 
     for (let company of jsonData.companies) {
         
-        const companyIndex = jsonData.companies.indexOf(company);
-        
+        const companyIndex = jsonData.companies.indexOf(company);        
         companyDutiesElements[companyIndex].innerText = company.duties;
         
+        companyNameElements[companyIndex].innerHTML = "";
         const nameText = document.createTextNode(` ${company.name}`);
         companyNameElements[companyIndex].appendChild(nameText);
 
+        companylocationElements[companyIndex].innerHTML = "";
         const locationText = document.createTextNode(` ${company.location}`);
         companylocationElements[companyIndex].appendChild(locationText);
 
@@ -57,9 +58,11 @@ function updateAboutSection(jsonData) {
         
         schoolEdLevelElements[schoolIndex].innerText = school.educationLevel;
 
+        schoolNameElements[schoolIndex].innerHTML = "";
         const nameText = document.createTextNode(` ${school.name}`);
         schoolNameElements[schoolIndex].appendChild(nameText);
 
+        schoolLocationElements[schoolIndex].innerHTML = "";
         const locationText = document.createTextNode(` ${school.location}`);
         schoolLocationElements[schoolIndex].appendChild(locationText);
 

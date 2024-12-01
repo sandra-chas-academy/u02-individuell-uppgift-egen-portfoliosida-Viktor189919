@@ -118,6 +118,7 @@ async function updateProjects() {
     
     } else {
         projectOneTitleElement.innerText = "Failed to collect data";
+        projectOneDescriptionElement.innerText = "";
     }
 
     if (minesweeperData !== "error") {
@@ -129,6 +130,7 @@ async function updateProjects() {
 
     } else {
         projectTwoTitleElement.innerText = "Failed to collect data";
+        projectOneDescriptionElement.innerText = "";
     }
 
     setTimeout(() => {
