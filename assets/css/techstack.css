@@ -1,0 +1,66 @@
+.all-container {
+    gap: 4rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: center;
+    width: 100%;
+    max-width: 70rem;
+}
+
+main p {
+    font-size: 0.9rem;
+}
+
+main ul {
+    list-style: none;
+}
+
+main ul img {
+    width: 5.5rem;
+}
+
+.techstack-list {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+
+
+@media (min-width: 600px) {
+
+    .nav-list a, .social-media-container {
+        display: flex;
+    }
+
+    main p{
+        margin-bottom: 4rem;
+    }
+
+    .techstack-header {
+        font-size: 2rem;
+    }
+
+    .techstack-list {
+        grid-template-columns: repeat(6, 16.66%);
+    }
+
+    .tools-header {
+        display: none;
+    }
+
+    .tools-list {
+        grid-template-columns: repeat(6, 16.66%);
+    }
+}

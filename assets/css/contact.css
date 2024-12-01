@@ -1,0 +1,56 @@
+main {
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+main h1 {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1.5rem;
+    font-style: normal;
+    width: fit-content; /*För att hela gradienten ska synas*/
+    background-image: var(--my-gradient-text);
+    color: transparent;
+    background-clip: text;
+}
+
+.contact span {
+    font-size: 1rem;
+    color: var(--paragraph-color)
+}
+
+.main-burgermenu-open {
+    height: 20rem;
+}
+
+@media (min-width: 600px) {
+
+    .nav-list li a, .social-media-container {
+        display: flex;
+    }
+
+    main h1 {
+        font-size: 3rem;
+    }
+
+    .contact {
+        font-size: 3.4rem;
+    }
+
+    .contact span {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,66 @@
+.intro-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5rem;
+    gap: 2rem;
+}
+
+.intro-text {
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.intro-container .my-name {
+    width: fit-content; /*För att hela gradienten ska synas*/
+    background-image: var(--my-gradient-text);
+    color: transparent;
+    background-clip: text;
+}
+
+.intro-container img {
+    width: 2rem;
+}
+
+.intro-container .portrait-container {
+    width: 15rem;
+    border-radius: 50%;
+    padding: 0.4rem;
+    background: var(--my-gradient);
+}
+
+.portrait-container img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.author {
+    margin-top: 3rem;
+    align-self: center;
+}
+
+@media (min-width: 600px) {
+
+    .intro-container {
+        max-width: 1100px;
+        padding: 8rem 0rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: auto;
+        margin-top: 3rem;
+    }
+
+    .text-container img {
+        width: 3rem;
+    }
+
+    .text-container {
+        font-size: 2rem;
+    }
+
+    .portrait-container {
+        width: 45%;
+    }
+}
